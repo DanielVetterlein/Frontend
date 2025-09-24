@@ -46,6 +46,8 @@
                         senha: inputSenha
                     })
                 })
+
+                //response (res)
                 .then(response => response.json())
                 .then(function (data) {
                     alert(`Usuário com ID ${data.id} cadastrado`)
