@@ -70,6 +70,41 @@
         
     }
 
+    function editar(idUsuario){
+        let novoNome = prompt("Digite o novo nome: ");
+
+        if(!novoNome){
+            alert("Nome não pode estar vazio!")
+            return;
+        }
+
+        let novoEmail = prompt("Digite o novo email: ");
+
+        if(!novoEmail){
+            alert("Email não pode estar vazio!")
+            return;
+        }
+
+        let novaSenha = prompt("Digite a nova senha: ");
+        
+        if(!novaSenha){
+            alert("Senha não pode estar vazio!")
+            return;
+        }
+
+        fetch(`http://localhost:3000/usuarios/${idUsuario}`, 
+        {
+            method : "PUT",
+            headers: {"Content-type": "application/json"},
+                    body: JSON.stringify({
+                        nome: novoNome,
+                        email: novoEmail,
+                        senha: novaSenha
+                    })
+        })
+        .then(() => carregar())
+    }
+
     window.onload = carregar
 </script>
 

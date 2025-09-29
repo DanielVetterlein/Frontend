@@ -28,9 +28,19 @@ tr:nth-child(even){
 }
 
 button{
-    width: 100%;
+    width: 20%;
     padding: 10px;
     margin-top: 10px;
     border-radius: 10px;
     cursor: pointer;
 }
+
+.botao-editar{
+    background-color: rgb(255, 240, 105);
+}
+
+.botao-excluir{
+    background-color: rgb(255, 65, 65);
+    color: white;
+}
+
