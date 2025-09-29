@@ -47,8 +47,10 @@
                 <td>${user.nome}</td>
                 <td>${user.email}</td>
                 <td>
+                    <button class="botao-adicionar" onclick="adicionar (${user.id})">Adicionar</button>
                     <button class="botao-editar" onclick="editar (${user.id})">Editar</button>
                     <button class="botao-excluir" onclick="excluir (${user.id})">Excluir</button>
+
                 </td>
                 `
 
@@ -105,6 +107,43 @@
         .then(() => carregar())
     }
 
+
+    function adicionar(){
+        let inputNome = prompt("Digite o nome")
+        let inputEmail = prompt("Digite o email")
+        let inputSenha = prompt("Digie a senha")
+        let inputConfirmarSenha = prompt('confirmar-senha')
+
+        if(!inputNome || !inputEmail || !inputSenha){
+            alert("Preencha os campos corretamente!");
+            return;
+        }
+        
+        if(inputSenha !== inputConfirmarSenha){
+            alert("As senhas não conferem");
+            return;
+        }
+        
+        fetch("http://localhost:3000/usuarios", {
+            method: "POST",
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify({
+                nome: inputNome,
+                email: inputEmail,
+                senha: inputSenha
+            })
+        })
+
+        //response (res)
+        .then(response => response.json())
+        .then(function (data) {
+            alert(`Usuário com ID ${data.id} cadastrado`)
+            
+        })
+        .then(() => carregar())
+        
+    }
+                
     window.onload = carregar
 </script>
 
